@@ -34,5 +34,9 @@ py manage.py migrate
 
 py manage.py makemigrations polls
 
+py manage.py sqlmigrate polls 0001
+
+py manage.py migrate
+
 deactivate
 ```
