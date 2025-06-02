@@ -32,5 +32,7 @@ pip install psycopg2-binary
 
 py manage.py migrate
 
+py manage.py makemigrations polls
+
 deactivate
 ```
