@@ -16,5 +16,21 @@ py
 py -m django --version
 mkdir djangotutorial
 
+django-admin startproject mysite djangotutorial
+
+cd djangotutorial
+
+py manage.py runserver 4891
+
+ctrl+c
+
+py manage.py startapp polls
+
+py manage.py runserver 4891
+
+pip install psycopg2-binary
+
+py manage.py migrate
+
 deactivate
 ```
