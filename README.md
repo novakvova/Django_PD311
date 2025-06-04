@@ -91,3 +91,26 @@ git rm -r --cached .
 git add .
 git commit -m ".gitignore Fixed"
 ```
+
+## Clone Project GitClone
+```
+git clone https://github.com/novakvova/Django_PD311.git
+
+cd Django_PD311
+
+py -m venv .venv
+
+.venv\Scripts\activate.bat
+
+python.exe -m pip install --upgrade pip
+
+py -m pip install Django
+pip install psycopg2-binary
+
+cd 1.SimpleSite
+
+cd djangotutorial
+
+py manage.py runserver 4891
+
+```
