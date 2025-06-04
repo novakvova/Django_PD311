@@ -85,3 +85,9 @@ py manage.py shell
 >>> c.delete()
 ```
 
+## Claer cache git
+```
+git rm -r --cached .
+git add .
+git commit -m ".gitignore Fixed"
+```
