@@ -106,6 +106,7 @@ python.exe -m pip install --upgrade pip
 
 py -m pip install Django
 pip install psycopg2-binary
+pip install Pillow
 
 cd 1.SimpleSite
 
@@ -123,5 +124,11 @@ cd djangotutorial
 py manage.py runserver 4891
 
 pip install Pillow
+
+py manage.py makemigrations polls
+py manage.py migrate
+
+
+
 
 ```
