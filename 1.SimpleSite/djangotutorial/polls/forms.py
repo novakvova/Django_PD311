@@ -5,29 +5,29 @@ from django.contrib.auth.forms import UserCreationForm
 class CustomUserCreationForm(UserCreationForm):
     username = forms.CharField(
         label="Логін", 
-        widget= form.TextInput(attrs={'class': 'form-control'})
+        widget= forms.TextInput(attrs={'class': 'form-control'})
         )
     email = forms.EmailField(
         label="Електронна пошта",
         required=True,
-        widget= form.TextInput(attrs={'class': 'form-control'})
+        widget= forms.TextInput(attrs={'class': 'form-control'})
         )
     first_name = forms.CharField(
         label="Ім'я",
         required=True,
-        widget= form.TextInput(attrs={'class': 'form-control'})
+        widget= forms.TextInput(attrs={'class': 'form-control'})
         )
     last_name = forms.CharField(
         label="Прізвище",
         required=True,
-        widget= form.TextInput(attrs={'class': 'form-control'})
+        widget= forms.TextInput(attrs={'class': 'form-control'})
         )
     image = forms.ImageField(
         label="Зображення",
         required=True,
-        widget= form.FileInput(attrs={'class': 'form-control'})
+        widget= forms.FileInput(attrs={'class': 'form-control'})
         )
-    password = forms.CharField(
+    password1 = forms.CharField(
         label="Пароль",
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
         )
