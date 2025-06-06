@@ -114,3 +114,14 @@ cd djangotutorial
 py manage.py runserver 4891
 
 ```
+
+## Робота із зображеннями
+```
+.venv\Scripts\activate.bat
+cd 1.SimpleSite
+cd djangotutorial
+py manage.py runserver 4891
+
+pip install Pillow
+
+```
