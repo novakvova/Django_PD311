@@ -128,7 +128,13 @@ pip install Pillow
 py manage.py makemigrations polls
 py manage.py migrate
 
+```
 
+## Встановлення бібліотек
+```
+.venv\Scripts\activate.bat
+pip freeze
+pip freeze > requirements.txt
 
 
 ```
