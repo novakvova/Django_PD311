@@ -11,6 +11,25 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
 
+    # def save(self, *args, **kwargs):
+    #     if self.image_small:
+    #         optimized_image, new_name = optimize_image(self.image_small, size=(300, 300))
+    #         if optimized_image and new_name:
+    #             self.image_small.save(new_name, optimized_image, save=False)
+
+    #     if self.image_medium:
+    #         optimized_image, new_name = optimize_image(self.image_medium, size=(600, 600))
+    #         if optimized_image and new_name:
+    #             self.image_medium.save(new_name, optimized_image, save=False)
+
+    #     if self.image_large:
+    #         optimized_image, new_name = optimize_image(self.image_large, size=(1200, 1200))
+    #         if optimized_image and new_name:
+    #             self.image_large.save(new_name, optimized_image, save=False)
+
+    #     super().save(*args, **kwargs)
+        
+
     def __str__(self):
         return self.email
 
