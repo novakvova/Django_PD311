@@ -136,5 +136,21 @@ py manage.py migrate
 pip freeze
 pip freeze > requirements.txt
 
+git clone https://github.com/novakvova/Django_PD311.git
 
+cd Django_PD311
+cd 1.SimpleSite
+py -m venv .venv
+.venv\Scripts\activate.bat
+python.exe -m pip install --upgrade pip
+pip install -r requirements.txt
+
+cd djangotutorial
+py manage.py runserver 4891
+```
+
+## Робота з фото декілька розмірів
+```
+py manage.py makemigrations polls
+py manage.py migrate
 ```
