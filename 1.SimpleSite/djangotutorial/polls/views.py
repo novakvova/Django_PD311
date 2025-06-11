@@ -6,6 +6,9 @@ from .utils import optimize_image
 from .models import CustomUser
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login
+from django.contrib.auth.decorators import login_required
+from .forms import PostForm
+from .models import Post
 # Create your views here.
 
 def index(request):
@@ -55,3 +58,25 @@ def register(request):
 def users(request):
     users = CustomUser.objects.all()
     return render(request, 'users.html', {'users': users})
+
+@login_required
+def create_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            if 'image' in request.FILES:
+                optimized_image, new_name = optimize_image(request.FILES['image'], max_size=(1200, 1200))
+                post.image.save(new_name, optimized_image, save=False)
+            post.author = request.user
+            post.save()
+            return redirect('polls:post_list')
+    else:
+        form = PostForm()
+    # Звертаємось без префікса 'polls/' бо шаблони у кореневій папці templates/
+    return render(request, 'create_post.html', {'form': form})
+
+def post_list(request):
+    posts = Post.objects.select_related('author').order_by('-created_at')
+    # Аналогічно тут — без 'polls/'
+    return render(request, 'post_list.html', {'posts': posts})
