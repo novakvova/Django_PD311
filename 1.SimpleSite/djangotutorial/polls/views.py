@@ -4,11 +4,26 @@ from .forms import CustomUserCreationForm
 from django.contrib import messages
 from .utils import optimize_image
 from .models import CustomUser
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as auth_login
 # Create your views here.
 
 def index(request):
     # return HttpResponse("Привіт! Це файл views.py")
     return render(request, 'index.html')
+
+def user_login(request):  # перейменував функцію
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            auth_login(request, user)  # виклик django.contrib.auth.login
+            return redirect('polls:index')
+        else:
+            messages.error(request, 'Невірний логін або пароль')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
 
 def register(request):
     if request.method == 'POST':
