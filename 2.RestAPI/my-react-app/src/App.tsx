@@ -1,45 +1,18 @@
 import './App.css'
-import {useGetCategoriesQuery} from "./services/apiCategory.ts";
+import HomePage from "./pages/Home";
+import {Route, Routes} from "react-router-dom";
+import Layout from "./components/Layout";
+import * as React from "react";
 
-const App = () => {
-
-    const {data: list, isLoading, error} = useGetCategoriesQuery();
-
-    console.log("List items in server", list);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-    if (error)
-        return <div>Something went wrong.</div>;
+const App : React.FC = () => {
 
     return (
         <>
-            <h1>Привіт козаки</h1>
-
-            <table>
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Назва</th>
-                    <th>Слаг</th>
-                    <th>Опис</th>
-                </tr>
-                </thead>
-                <tbody>
-                {list?.map((item) => (
-                    <tr key={item.id}>
-                        <td>{item.id}</td>
-                        <td>{item.name}</td>
-                        <td>{item.slug}</td>
-                        <td>{item.description}</td>
-
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-
-
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<HomePage />} />
+                </Route>
+            </Routes>
         </>
     )
 }
