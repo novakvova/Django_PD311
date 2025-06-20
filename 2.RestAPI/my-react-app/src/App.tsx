@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import * as React from "react";
 import AdminLayout from "./layout/admin/AdminLayout.tsx";
 import AdminDashboardPage from "./pages/admin/Dashboard";
+import AdminNotFoundPage from "./pages/admin/NotFound";
 
 const App : React.FC = () => {
 
@@ -21,6 +22,7 @@ const App : React.FC = () => {
 
                 </Route>
 
+                <Route path="*" element={<AdminNotFoundPage />} />
             </Routes>
         </>
     )
