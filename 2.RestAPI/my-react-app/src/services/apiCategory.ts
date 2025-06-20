@@ -1,12 +1,13 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import {createApi} from "@reduxjs/toolkit/query/react";
 import type { ICategoryItem } from "./types";
+import {createBaseQuery} from "../utils/createBaseQuery.ts";
 
 export const apiCategory = createApi({
    reducerPath: 'api',
-   baseQuery: fetchBaseQuery({baseUrl: 'http://127.0.0.1:4096/api/'}),
+   baseQuery: createBaseQuery("categories"),
    endpoints: (builder) => ({
       getCategories:  builder.query<ICategoryItem[], void>({
-         query: () => 'categories' 
+         query: () => ''
       }),
    })
     
