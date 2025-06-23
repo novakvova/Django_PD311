@@ -45,3 +45,9 @@ npm i @reduxjs/toolkit react-redux
 ```
 pip install django-cors-headers
 ```
+
+
+## Django working images
+```
+pip install Pillow
+```
