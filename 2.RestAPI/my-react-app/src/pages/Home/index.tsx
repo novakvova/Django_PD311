@@ -1,5 +1,6 @@
 import {useDeleteCategoryMutation, useGetCategoriesQuery} from "../../services/apiCategory.ts";
 import {useNavigate} from "react-router-dom";
+import LoadingOverlay from "../../components/ui/loading/LoadingOverlay.tsx";
 
 
 const HomePage : React.FC = () => {
@@ -26,10 +27,6 @@ const HomePage : React.FC = () => {
 
     console.log("List items in server", list);
 
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
     if (error)
         return <div>Something went wrong.</div>;
 
@@ -40,6 +37,7 @@ const HomePage : React.FC = () => {
     return (
         <>
             <div className="relative min-h-screen p-6">
+                {isLoading && <LoadingOverlay />}
                 <h1 className="text-2xl font-bold mb-4 text-gray-800">Категорії</h1>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
