@@ -50,4 +50,15 @@ pip install django-cors-headers
 ## Django working images
 ```
 pip install Pillow
+python manage.py makemigrations
+
+python manage.py migrate
+
+py manage.py runserver 4096
+```
+
+## Install jwt
+```
+pip install djangorestframework-simplejwt
+
 ```

@@ -7,6 +7,8 @@ import AdminLayout from "./layout/admin/AdminLayout.tsx";
 import AdminDashboardPage from "./pages/admin/Dashboard";
 import AdminNotFoundPage from "./pages/admin/NotFound";
 import AddCategoryPage from "./pages/AddCategoryPage";
+import LoginPage from "./pages/Login";
+import RegisterPage from "./pages/Register";
 
 const App : React.FC = () => {
 
@@ -16,6 +18,8 @@ const App : React.FC = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<HomePage />} />
                     <Route path={"add-category"} element={<AddCategoryPage  />} />
+                    <Route path={"login"} element={<LoginPage  />} />
+                    <Route path={"register"} element={<RegisterPage  />} />
                 </Route>
 
                 <Route path={"admin"} element={<AdminLayout />}>

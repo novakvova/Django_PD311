@@ -9,7 +9,8 @@ export const apiCategory = createApi({
    tagTypes: ["Categories"],
    endpoints: (builder) => ({
       getCategories:  builder.query<ICategoryItem[], void>({
-         query: () => ''
+         query: () => '',
+         providesTags: ['Categories'],
       }),
 
       createCategory: builder.mutation<ICategoryItem, ICategoryCreate>({

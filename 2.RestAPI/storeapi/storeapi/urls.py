@@ -19,6 +19,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from product.views import CategoryViewSet
+from product.views import RegisterView, LoginView
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -29,4 +30,6 @@ router.register('categories', CategoryViewSet, basename='category')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/register/', RegisterView.as_view(), name='register'),
+    path('api/login/', LoginView.as_view(), name='login'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
