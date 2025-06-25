@@ -9,6 +9,7 @@ import AdminNotFoundPage from "./pages/admin/NotFound";
 import AddCategoryPage from "./pages/AddCategoryPage";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
+import EditCategoryPage from "./pages/EditCategoryPage";
 
 const App : React.FC = () => {
 
@@ -18,6 +19,7 @@ const App : React.FC = () => {
                 <Route path="/" element={<Layout />}>
                     <Route index element={<HomePage />} />
                     <Route path={"add-category"} element={<AddCategoryPage  />} />
+                    <Route path="edit-category/:id" element={<EditCategoryPage />} />
                     <Route path={"login"} element={<LoginPage  />} />
                     <Route path={"register"} element={<RegisterPage  />} />
                 </Route>

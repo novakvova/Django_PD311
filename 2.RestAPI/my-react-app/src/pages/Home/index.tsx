@@ -34,6 +34,10 @@ const HomePage : React.FC = () => {
         navigate("/add-category");
     };
 
+    const handleEdit = (id: number) => {
+        navigate(`/edit-category/${id}`);
+    };
+
     return (
         <>
             <div className="relative min-h-screen p-6">
@@ -63,12 +67,12 @@ const HomePage : React.FC = () => {
                                 <p className="text-sm text-gray-600 mt-2">{item.description}</p>
                             </div>
                             <div className="mt-4 flex justify-end space-x-4">
-                                {/*<button*/}
-                                {/*    onClick={() => handleEdit(item.id)}*/}
-                                {/*    className="text-indigo-600 hover:text-indigo-900 text-sm font-medium"*/}
-                                {/*>*/}
-                                {/*    Редагувати*/}
-                                {/*</button>*/}
+                                <button
+                                    onClick={() => handleEdit(item.id)}
+                                    className="text-indigo-600 hover:text-indigo-900 text-sm font-medium"
+                                >
+                                    Редагувати
+                                </button>
                                 <button
                                     onClick={() => handleDelete(item.id)}
                                     className="text-red-600 hover:text-red-800 text-sm font-medium"
