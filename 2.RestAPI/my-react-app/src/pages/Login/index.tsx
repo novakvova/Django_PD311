@@ -3,6 +3,7 @@ import { useLoginMutation } from "../../services/authApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import {useGoogleLogin} from "@react-oauth/google";
 
 export default function LoginPage() {
     const [username, setUsername] = useState("");
@@ -29,6 +30,11 @@ export default function LoginPage() {
             alert("Невірний логін або пароль");
         }
     };
+
+    const loginWithGoogle = useGoogleLogin({
+        onSuccess: tokenResponse =>
+            console.log("Ваш токен від гугла",tokenResponse),
+    });
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">
@@ -70,6 +76,18 @@ export default function LoginPage() {
                     className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition-colors disabled:bg-indigo-400"
                 >
                     {isLoading ? "Завантаження..." : "Увійти"}
+                </button>
+
+                <button
+                    onClick = {(event) => {
+                        event.preventDefault();
+                        loginWithGoogle();
+                        console.log("Зайти через гугл")
+                    }}
+                    disabled={isLoading}
+                    className="mt-4 w-full py-3 bg-amber-600 hover:bg-amber-700 text-white font-semibold rounded-lg transition-colors disabled:bg-indigo-400"
+                >
+                    Зайти через Google
                 </button>
             </form>
         </div>

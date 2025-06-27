@@ -1,4 +1,5 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const APP_GOOGLE_OAUTH = import.meta.env.VITE_APP_GOOGLE_OAUTH;
 // const APP_IMAGE_URL = API_BASE_URL + import.meta.env.VITE_APP_IMAGE_URL;
 
 // const IMAGES_50_URL = APP_IMAGE_URL + '/50_';
@@ -10,6 +11,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const APP_ENV = {
     API_BASE_URL,
+    APP_GOOGLE_OAUTH,
     // IMAGES_50_URL,
     // IMAGES_100_URL,
     // IMAGES_200_URL,
