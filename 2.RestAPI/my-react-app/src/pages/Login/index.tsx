@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLoginMutation } from "../../services/authApi";
+import { useGoogleLoginMutation, useLoginMutation } from "../../services/authApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../slices/authSlice";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,8 @@ export default function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [login, { isLoading }] = useLoginMutation();
+    const [googleLogin, { isLoading: isGoogleLoading }] = useGoogleLoginMutation();
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -32,9 +34,33 @@ export default function LoginPage() {
     };
 
     const loginWithGoogle = useGoogleLogin({
-        onSuccess: tokenResponse =>
-            console.log("Ваш токен від гугла",tokenResponse),
-    });
+        onSuccess: async (tokenResponse) => {
+          try {
+            // ВИКЛИКАЄМО саме googleLogin, а не login!
+            const res = await googleLogin({
+              access_token: tokenResponse.access_token,
+            }).unwrap();
+    
+            dispatch(
+              setCredentials({
+                access: res.access,
+                user: {
+                  id: res.id,
+                  email: res.email,
+                  phone: res.phone,
+                  image: res.avatar,
+                  username: res.username,
+                },
+              })
+            );
+    
+            navigate("/");
+          } catch (err) {
+            alert("Помилка Google авторизації");
+          }
+        },
+      });
+
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 px-4">

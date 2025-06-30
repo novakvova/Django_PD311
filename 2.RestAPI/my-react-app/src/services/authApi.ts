@@ -19,7 +19,14 @@ export const authApi = createApi({
                 body: data,
             }),
         }),
+        googleLogin: builder.mutation({
+            query: (data) => ({
+              url: "google-login/",
+              method: "POST",
+              body: data,
+            }),
+          }),
     }),
 });
 
-export const { useRegisterMutation, useLoginMutation } = authApi;
+export const { useRegisterMutation, useLoginMutation, useGoogleLoginMutation } = authApi;
