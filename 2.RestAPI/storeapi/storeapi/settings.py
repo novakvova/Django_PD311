@@ -133,3 +133,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True  # Only for development! Configure properly for production
 CORS_ALLOW_CREDENTIALS = True
+
+AUTH_USER_MODEL = 'product.CustomUser'
