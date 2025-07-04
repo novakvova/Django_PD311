@@ -135,3 +135,13 @@ CORS_ALLOW_ALL_ORIGINS = True  # Only for development! Configure properly for pr
 CORS_ALLOW_CREDENTIALS = True
 
 AUTH_USER_MODEL = 'product.CustomUser'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.ukr.net'                    # Адреса SMTP сервера
+EMAIL_PORT = 2525                              # Порт
+EMAIL_USE_TLS = False                           # Вказати True, якщо сервер підтримує TLS
+EMAIL_USE_SSL = True                          # Якщо сервер вимагає SSL — використай True замість TLS
+EMAIL_HOST_USER = 'super.novakvova@ukr.net'    # Логін
+EMAIL_HOST_PASSWORD = 'aCmVlm18g73pZw7w'       # Пароль
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER           # Від кого відправляти
