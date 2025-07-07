@@ -2,8 +2,20 @@ import { useState } from "react";
 import { useGoogleLoginMutation, useLoginMutation } from "../../services/authApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../slices/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useGoogleLogin} from "@react-oauth/google";
+
+import { jwtDecode } from "jwt-decode";
+
+interface DecodedToken {
+    id: string | number;
+    user_id?: string | number;
+    username: string;
+    email?: string;
+    phone?: string;
+    avatar?: string;
+    image?: string;
+  }
 
 export default function LoginPage() {
     const [username, setUsername] = useState("");
@@ -17,21 +29,28 @@ export default function LoginPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const res = await login({ username, password }).unwrap();
-            console.log("Login response:", res);
-
-            dispatch(
-                setCredentials({
-                    username: res.username ?? username,
-                    access: res.access,
-                })
-            );
-
-            navigate("/"); // перенаправлення на головну після логіну
+          const res = await login({ username, password }).unwrap();
+    
+          const decoded: DecodedToken = jwtDecode(res.access);
+          console.log("Розшифровані дані токена:", decoded);
+          dispatch(
+            setCredentials({
+              access: res.access,
+              user: {
+                id: decoded.id || decoded.user_id || 0,
+                email: decoded.email,
+                phone: decoded.phone,
+                image: decoded.image,
+                username: decoded.username,
+              },
+            })
+          );
+    
+          navigate("/");
         } catch (err) {
-            alert("Невірний логін або пароль");
+          alert("Невірний логін або пароль");
         }
-    };
+      };
 
     const loginWithGoogle = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
@@ -103,6 +122,15 @@ export default function LoginPage() {
                 >
                     {isLoading ? "Завантаження..." : "Увійти"}
                 </button>
+
+                <div className="flex mb-2 flex-col items-center gap-3">
+                  <Link
+                    to="/password-reset"
+                    className="text-indigo-600 hover:text-indigo-800 dark:text-indigo-400 dark:hover:text-indigo-600 underline"
+                  >
+                    Забули пароль? Запит на відновлення
+                  </Link>
+                </div>
 
                 <button
                     onClick = {(event) => {

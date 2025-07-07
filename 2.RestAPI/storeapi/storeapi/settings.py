@@ -143,5 +143,5 @@ EMAIL_PORT = 2525                              # Порт
 EMAIL_USE_TLS = False                           # Вказати True, якщо сервер підтримує TLS
 EMAIL_USE_SSL = True                          # Якщо сервер вимагає SSL — використай True замість TLS
 EMAIL_HOST_USER = 'super.novakvova@ukr.net'    # Логін
-EMAIL_HOST_PASSWORD = 'aCmVlm18g73pZw7w'       # Пароль
+EMAIL_HOST_PASSWORD = '2ap5JjwsslmASkUG'       # Пароль
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER           # Від кого відправляти

@@ -10,6 +10,8 @@ import AddCategoryPage from "./pages/AddCategoryPage";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import EditCategoryPage from "./pages/EditCategoryPage";
+import PasswordResetRequest from "./pages/PasswordReset";
+import PasswordResetConfirm from "./pages/PasswordResetConfirm";
 
 const App : React.FC = () => {
 
@@ -22,6 +24,13 @@ const App : React.FC = () => {
                     <Route path="edit-category/:id" element={<EditCategoryPage />} />
                     <Route path={"login"} element={<LoginPage  />} />
                     <Route path={"register"} element={<RegisterPage  />} />
+                    <Route path={"password-reset"} element={<PasswordResetRequest />} />
+          <Route
+            path="password-reset-confirm/:uid/:token"
+            element={<PasswordResetConfirm />}
+          />
+
+
                 </Route>
 
                 <Route path={"admin"} element={<AdminLayout />}>
